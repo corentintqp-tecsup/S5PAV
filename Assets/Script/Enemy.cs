@@ -2,10 +2,11 @@ using UnityEngine;
 
 public class Enemy : BaseEntity
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public XpSphere xpSpherePrefab;
+
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -38,10 +39,14 @@ public class Enemy : BaseEntity
             default:
                 break;
         }
-        print("ENEMY" + entityName + " TOOK " + damage + " DAMAGE!");
+        print("ENEMY " + entityName + " TOOK " + damage + " DAMAGE!");
         stats.TakeDamage(damage);
         if (stats.Health <= 0)
+        {
+            if (xpSpherePrefab)
+                Instantiate(xpSpherePrefab, transform.position, Quaternion.identity);
             Destroy(gameObject);
+        }
     }
 
     private void FollowPlayer()

@@ -13,10 +13,12 @@ public class Player : BaseEntity
 
     public List<GameObject> Enemys = new();
 
+    public int XP = 0;
+
     protected override void Awake()
     {
         base.Awake();
-        coll = GetComponent<CircleCollider2D>();
+        coll = GetComponentInChildren<CircleCollider2D>();
         coll.radius = range;
     }
     void Start()
@@ -36,12 +38,10 @@ public class Player : BaseEntity
 
     public void AutoAttackEnemies()
     {
-        print("ATAQUE!");
-
         for (int i = Enemys.Count - 1; i >= 0; i--)
         {
             GameObject enemy = Enemys[i];
-            // On vérifie que l'ennemi n'a pas été détruit
+
             if (enemy == null)
             {
                 Enemys.RemoveAt(i);
