@@ -51,10 +51,24 @@ public class Enemy : BaseEntity
 
     private void FollowPlayer()
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        GameObject[] player = GameObject.FindGameObjectsWithTag("Player");
         if (player != null)
         {
-            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, Time.deltaTime);
+            GameObject closestPlayer = null;
+            float closestDistance = Mathf.Infinity;
+            foreach (GameObject p in player)
+            {
+                float distance = Vector3.Distance(transform.position, p.transform.position);
+                if (distance < closestDistance)
+                {
+                    closestDistance = distance;
+                    closestPlayer = p;
+                }
+            }
+            if (closestPlayer != null)
+            {
+                transform.position = Vector2.MoveTowards(transform.position, closestPlayer.transform.position, Time.deltaTime);
+            }
         }
     }
 }
