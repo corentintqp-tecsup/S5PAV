@@ -90,7 +90,7 @@ public class Player : BaseEntity
 
     private void OnAttack1(InputAction.CallbackContext context)
     {
-        Instantiate(Weapons[0], transform.position, Quaternion.identity, transform);
+        Instantiate(Weapons[0], transform.position + (Vector3.up * 2f), Quaternion.identity, transform);
     }
 
     private void OnAttack2(InputAction.CallbackContext context)

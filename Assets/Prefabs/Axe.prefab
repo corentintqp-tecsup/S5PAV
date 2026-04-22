@@ -105,10 +105,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f87ccfefdd5b4e45b803f1a95cd3e52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BaseWeapon
-  Duration: 10
+  Duration: 100
   Type: 1
-  Speed: 15
-  RotationSpeed: 100
+  Speed: 50
+  RotationSpeed: 230
 --- !u!61 &6927374295345653896
 BoxCollider2D:
   m_ObjectHideFlags: 0
