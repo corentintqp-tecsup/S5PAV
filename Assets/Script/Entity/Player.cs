@@ -23,6 +23,7 @@ public class Player : BaseEntity
 
     public List<GameObject> Enemys = new();
     public BaseWeapon[] Weapons = new BaseWeapon[2];
+    public BaseAbility[] Abilities = new BaseAbility[5];
 
     public int XP = 0;
 
@@ -48,12 +49,14 @@ public class Player : BaseEntity
                 inputs.Player.Move.canceled += OnPlayerMoveCanceled;
                 inputs.Player.Attack1.performed += OnAttack1;
                 inputs.Player.Attack2.performed += OnAttack2;
+                inputs.Player.Ability1.performed += OnAbility1;
                 break;
             case PlayerController.Player2:
                 inputs.Player2.Move.performed += OnPlayerMove;
                 inputs.Player2.Move.canceled += OnPlayerMoveCanceled;
                 inputs.Player2.Attack1.performed += OnAttack1;
                 inputs.Player2.Attack2.performed += OnAttack2;
+                inputs.Player2.Ability1.performed += OnAbility1;
                 break;
             default:
                 break;
@@ -96,6 +99,12 @@ public class Player : BaseEntity
     private void OnAttack2(InputAction.CallbackContext context)
     {
         Instantiate(Weapons[1], transform.position, Quaternion.identity);
+    }
+
+    private void OnAbility1(InputAction.CallbackContext context)
+    {
+        // Debug.Log("Ability 1 executed");
+        Abilities[0].Execute(this);
     }
 
     // public void AutoAttackEnemies()
